@@ -9,7 +9,7 @@ from PyQt6.QtCore import QTimer, Qt, QUrl
 WINDOW_WIDTH = 400
 WINDOW_HEIGHT = 200
 
-# File path to the sound file.
+# Path to the sound file.
 SOUND_FILE_PATH = "audio/clock sound.wav"
 
 
@@ -109,7 +109,6 @@ class Timer(QWidget):
         self.alarm_sound.setSource(QUrl.fromLocalFile(SOUND_FILE_PATH))
         if self.alarm_sound.status() == QSoundEffect.Status.Error:
             QErrorMessage().showMessage('There is a problem with the audio.')
-            print('An error occurred while attempting to load the audio.')
         else:
             self.alarm_sound.setVolume(0.3)
 
@@ -126,7 +125,6 @@ class Timer(QWidget):
 
         # Variables for the future time (when the timer expires) and the formatted future time.
         self.future_time = current_time + timer_duration
-        print(self.future_time)
         future_time_frmatted = self.future_time.strftime("%H:%M")
 
         # Setting the labels to display the moment when the timer expires.
@@ -141,8 +139,6 @@ class Timer(QWidget):
         '''Function to check the time and see whether it matches with the set duration on the timer.'''
         current_time = datetime.now()
         if current_time >= self.future_time:
-            print(current_time)
-            print('Time to wake up')
             self.alarm_sound.play()
             self.timer.stop()
 
@@ -356,6 +352,3 @@ def main():
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
-
-if __name__ == '__main__':
-    main()
