@@ -1,16 +1,25 @@
 import sys
+import os
 import datetime as dt
 from datetime import datetime
 from PyQt6.QtMultimedia import QSoundEffect
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import QTimer, Qt, QUrl
 
+def resource_path(relative_path):
+    '''Gets the file path for the audio, depending on whether or not it's being run directly or as an
+    executable.'''
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    else:
+        return os.path.join(os.path.abspath("."), relative_path)
+
 # Window width and height constants
 WINDOW_WIDTH = 400
 WINDOW_HEIGHT = 200
 
 # Path to the sound file.
-SOUND_FILE_PATH = "audio/clock sound.wav"
+SOUND_FILE_PATH = resource_path("audio/clock sound.wav")
 
 
 def create_grid_layout(rows: int, columns: int, width: int, height: int, Hsizepolicy: QSizePolicy.Policy, Vsizepolicy: QSizePolicy.Policy):
@@ -352,3 +361,6 @@ def main():
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
+
+if __name__ == '__main__':
+    main()
