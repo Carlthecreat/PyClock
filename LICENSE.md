@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2024 Carlthecreat
+Copyright (c) 2024 Chimdiebube Chinedum Okonkwo
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
